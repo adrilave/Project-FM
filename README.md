@@ -9,11 +9,11 @@ I found a new job as a Director of Football in the third tier of Spanish footbal
 
 📜 RULES:
 
-      - The game is played attibuteless, only stars can be viewed but only used as personnel judgement of a player as a tiebraker between two similar options
-      - There is an absolute power in deciding which staff members to keep or not keep
-      - Training and matches are all simulated and full responsability will be put in the second manager (Manager in the shadows)
-      - Only players/staff within the scouting range are available for examination or transfers as in real life
-      - All the decisions must be aligned with the manager/staff interests/playstyle, personnel must be aligned with president desires
+  - The game is played attibuteless, only stars can be viewed but only used as personnel judgement of a player as a tiebraker between two similar options
+  - There is an absolute power in deciding which staff members to keep or not keep
+  - Training and matches are all simulated and full responsability will be put in the second manager (Manager in the shadows)
+  - Only players/staff within the scouting range are available for examination or transfers as in real life
+  - All the decisions must be aligned with the manager/staff interests/playstyle, personnel must be aligned with president desires
       
     
 
