@@ -1,0 +1,218 @@
+-- Table for countries
+CREATE TABLE `countries`(
+    `country_id` VARCHAR(255) NOT NULL,
+    `none` INT NULL, 
+    PRIMARY KEY(`country_id`)
+);
+
+-- Table for divisions
+CREATE TABLE `divisions`(
+    `division_name` VARCHAR(255) NOT NULL,
+    `country_id` VARCHAR(255) NOT NULL,
+    `reputation` VARCHAR(255) NOT NULL,
+    PRIMARY KEY(`division_name`),
+    FOREIGN KEY (`country_id`) REFERENCES `countries`(`country_id`)
+);
+
+-- Table for teams
+CREATE TABLE `teams`(
+    `team_name` VARCHAR(255) NOT NULL,
+    `division_name` VARCHAR(255) NOT NULL,
+    `country_id` VARCHAR(255) NOT NULL,
+    PRIMARY KEY(`team_name`),
+    FOREIGN KEY (`division_name`) REFERENCES `divisions`(`division_name`),
+    FOREIGN KEY (`country_id`) REFERENCES `countries`(`country_id`)
+);
+
+-- Table for general player information
+CREATE TABLE IF NOT EXISTS `players_general`(
+    `complete_name` VARCHAR(255) NOT NULL,
+    `team_name` VARCHAR(255) NULL,
+    `position` VARCHAR(255) NOT NULL,
+    `height` VARCHAR(255) NOT NULL,
+    `weight` VARCHAR(255) NOT NULL,
+    `age` INT NOT NULL,
+    `dominant_foot` VARCHAR(255) NOT NULL,
+    `personality` VARCHAR(255) NULL,
+    `knowledge` VARCHAR(255) NULL,
+    `general_happiness` VARCHAR(255) NULL,
+    `mean_performance` VARCHAR(255) NULL,
+    `nationality` VARCHAR(255) NOT NULL,
+    `reputation` VARCHAR(255) NULL,
+    `style` VARCHAR(255) NOT NULL,
+    PRIMARY KEY(`complete_name`),
+    FOREIGN KEY (`team_name`) REFERENCES `teams`(`team_name`),
+    FOREIGN KEY (`nationality`) REFERENCES `countries`(`country_id`)
+);
+
+CREATE TABLE `players_contracts`(
+    `complete_name` VARCHAR(255) NOT NULL,
+    `end_contract` VARCHAR(255) NULL,
+    `salary` VARCHAR(255) NULL,
+    `min_salary` VARCHAR(255) NULL,
+    `max_salary` VARCHAR(255) NULL,
+    `representative` VARCHAR(255) NULL,
+    `transfer_value` VARCHAR(255) NULL,
+    `min_price` VARCHAR(255) NULL,
+	`max_price` VARCHAR(255) NULL,
+    `release_clause` VARCHAR(255) NULL,
+    PRIMARY KEY(`complete_name`));
+
+-- Table for strikers
+CREATE TABLE `strikers`(
+    `complete_name` VARCHAR(255) NOT NULL,
+    `position` VARCHAR(255) NOT NULL,
+    `matches_played` VARCHAR(255) NULL,
+    `minutes` VARCHAR(255) NULL,
+    `attempted_pass` VARCHAR(255) NULL,
+    `completed_pass` VARCHAR(255) NULL,
+    `progressive_pass` VARCHAR(255) NULL,
+    `key_pass` VARCHAR(255) NULL,
+    `assists` VARCHAR(255) NULL,
+    `xA` VARCHAR(255) NULL,
+    `key_chances_gen` VARCHAR(255) NULL,
+    `dribbles` VARCHAR(255) NULL,
+    `attempted_press` VARCHAR(255) NULL,
+    `completed_press` VARCHAR(255) NULL,
+    `distance_covered` VARCHAR(255) NULL,
+    `sprints_90` VARCHAR(255) NULL,
+    `commited_fouls` VARCHAR(255) NULL,
+    `received_fouls` VARCHAR(255) NULL,
+    `yellow_card` VARCHAR(255) NULL,
+    `red_card` VARCHAR(255) NULL,
+    `steals` VARCHAR(255) NULL,
+    `gain_pos_90` VARCHAR(255) NULL,
+    `loss_pos_90` VARCHAR(255) NULL,
+    `shots` VARCHAR(255) NULL,
+    `shots_outside_90` VARCHAR(255) NULL,
+    `shots_on_target` VARCHAR(255) NULL,
+    `goals` VARCHAR(255) NULL,
+    `goals_outside_area` VARCHAR(255) NULL,
+    `xG` VARCHAR(255) NULL,
+    `xG_wout_penalties` VARCHAR(255) NULL,
+    `attempted_head` VARCHAR(255) NULL,
+    `completed_head` VARCHAR(255) NULL,
+    `attempted_cross` VARCHAR(255) NULL,
+    `completed_cross` VARCHAR(255) NULL,
+    `open_att_cross`  VARCHAR(255) NULL,
+    `open_com_cross`  VARCHAR(255) NULL,
+    `offsides`  VARCHAR(255) NULL,
+    `team_goals`  VARCHAR(255) NULL,
+    PRIMARY KEY(`complete_name`),
+    FOREIGN KEY (`complete_name`) REFERENCES `players_general`(`complete_name`)
+);
+
+-- Table for defenders
+CREATE TABLE `defenders`(
+    `complete_name` VARCHAR(255) NOT NULL,
+    `position` VARCHAR(255) NOT NULL,
+    `matches_played` VARCHAR(255) NULL,
+    `minutes` VARCHAR(255) NULL,
+    `attempted_pass` VARCHAR(255) NULL,
+    `completed_pass` VARCHAR(255) NULL,
+    `progressive_pass` VARCHAR(255) NULL,
+    `key_pass` VARCHAR(255) NULL,
+    `assists` VARCHAR(255) NULL,
+    `xA` VARCHAR(255) NULL,
+    `key_chances_gen` VARCHAR(255) NULL,
+    `dribbles` VARCHAR(255) NULL,
+    `attempted_press` VARCHAR(255) NULL,
+    `completed_press` VARCHAR(255) NULL,
+    `distance_covered` VARCHAR(255) NULL,
+    `sprints_90` VARCHAR(255) NULL,
+    `attempted_tackle` VARCHAR(255) NULL,
+    `completed_tackle` VARCHAR(255) NULL,
+    `key_tackle` VARCHAR(255) NULL,
+    `commited_fouls`  VARCHAR(255) NULL,
+    `received_fouls`  VARCHAR(255) NULL,
+    `yellow_card`  VARCHAR(255) NULL,
+    `red_card`  VARCHAR(255) NULL,
+    `steals`  VARCHAR(255) NULL,
+    `clears`  VARCHAR(255) NULL,
+    `gain_pos_90`  VARCHAR(255) NULL,
+    `loss_pos_90`  VARCHAR(255) NULL,
+    `goals`  VARCHAR(255) NULL,
+    `xG`  VARCHAR(255) NULL,
+    `attempted_head`  VARCHAR(255) NULL,
+    `completed_head`  VARCHAR(255) NULL,
+    `defense_rejections`  VARCHAR(255) NULL,
+    `rejections`  VARCHAR(255) NULL,
+    `attempted_cross`  VARCHAR(255) NULL,
+    `completed_cross`  VARCHAR(255) NULL,
+    `open_att_cross`  VARCHAR(255) NULL,
+    `open_com_cross`  VARCHAR(255) NULL,
+    PRIMARY KEY(`complete_name`),
+    FOREIGN KEY (`complete_name`) REFERENCES `players_general`(`complete_name`)
+);
+
+-- Table for goalkeepers
+CREATE TABLE `goalkeepers`(
+    `complete_name` VARCHAR(255) NOT NULL,
+    `position` VARCHAR(255) NOT NULL,
+    `matches_played` VARCHAR(255) NULL,
+    `minutes` VARCHAR(255) NULL,
+    `goals_conceded`  VARCHAR(255) NULL,
+    `xGE`  VARCHAR(255) NULL,
+    `saved_balls`  VARCHAR(255) NULL,
+    `cleared_balls`  VARCHAR(255) NULL,
+    `stops_ratio` VARCHAR(255) NULL,
+    `rejected_balls`  VARCHAR(255) NULL,
+    `attempted_pass`  VARCHAR(255) NULL,
+    `completed_pass`  VARCHAR(255) NULL,
+    `clean_sheet`  VARCHAR(255) NULL,
+    `expected_saves`  VARCHAR(255) NULL,
+    `stops_90`  VARCHAR(255) NULL,
+    `penalty_stops`  VARCHAR(255) NULL,
+    `goal_errors`  VARCHAR(255) NULL,
+    `gain_pos_90`  VARCHAR(255) NULL,
+    `loss_pos_90`  VARCHAR(255) NULL,
+    PRIMARY KEY(`complete_name`),
+    FOREIGN KEY (`complete_name`) REFERENCES `players_general`(`complete_name`)
+);
+
+-- Table for midfielders
+CREATE TABLE `midfielders`(
+    `complete_name` VARCHAR(255) NOT NULL,
+    `position` VARCHAR(255) NOT NULL,
+    `matches_played` VARCHAR(255) NULL,
+    `minutes` VARCHAR(255) NULL,
+    `attempted_pass` VARCHAR(255) NULL,
+    `completed_pass` VARCHAR(255) NULL,
+    `progressive_pass` VARCHAR(255) NULL,
+    `key_pass` VARCHAR(255) NULL,
+    `assists` VARCHAR(255) NULL,
+    `xA` VARCHAR(255) NULL,
+    `key_chances_gen` VARCHAR(255) NULL,
+    `dribbles` VARCHAR(255) NULL,
+    `attempted_press` VARCHAR(255) NULL,
+    `completed_press` VARCHAR(255) NULL,
+    `distance_covered` VARCHAR(255) NULL,
+    `sprints_90` VARCHAR(255) NULL,
+    `attempted_tackle` VARCHAR(255) NULL,
+    `completed_tackle` VARCHAR(255) NULL,
+    `key_tackle` VARCHAR(255) NULL,
+    `commited_fouls` VARCHAR(255) NULL,
+    `received_fouls` VARCHAR(255) NULL,
+    `yellow_card` VARCHAR(255) NULL,
+    `red_card` VARCHAR(255) NULL,
+    `steals` VARCHAR(255) NULL,
+    `clears` VARCHAR(255) NULL,
+    `gain_pos_90` VARCHAR(255) NULL,
+    `loss_pos_90` VARCHAR(255) NULL,
+    `shots` VARCHAR(255) NULL,
+    `shots_outside_90` VARCHAR(255) NULL,
+    `shots_on_target` VARCHAR(255) NULL,
+    `goals` VARCHAR(255) NULL,
+    `goals_outside_area` VARCHAR(255) NULL,
+    `xG` VARCHAR(255) NULL,
+    `attempted_head` VARCHAR(255) NULL,
+    `completed_head` VARCHAR(255) NULL,
+    `defense_rejections` VARCHAR(255) NULL,
+    `rejections` VARCHAR(255) NULL,
+    `attempted_cross` VARCHAR(255) NULL,
+    `completed_cross` VARCHAR(255) NULL,
+    `open_att_cross` VARCHAR(255) NULL,
+    `open_com_cross` VARCHAR(255) NULL,
+    PRIMARY KEY(`complete_name`),
+    FOREIGN KEY (`complete_name`) REFERENCES `players_general`(`complete_name`)
+);
